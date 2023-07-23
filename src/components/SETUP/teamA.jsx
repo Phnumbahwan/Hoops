@@ -25,11 +25,17 @@ const TeamA = () => {
     }
 
     const handleChangeName = (e) => {
-        if(e.target.value === '') {
-            toast.error("Please add name.")
+        if (e.target.value === '') {
+            toast.error("Please add Team's name.")
         }
         setErrName(e.target.value === '');
         setName(e.target.value);
+    }
+
+    const handleMember = (name, index) => {
+        const updatedMembers = [...members];
+        updatedMembers[index] = name;
+        setMembers(updatedMembers);
     }
 
     return (
@@ -38,7 +44,7 @@ const TeamA = () => {
                 {
                     editTeam ? (
                         <div className="flex h-10">
-                            <input value={name} onChange={(e) => handleChangeName(e)} type="text" className={`rounded text-black focus:ring-0 ${errName ? 'focus:border-primary border-primary' : 'focus:border-emerald-400 border-emerald-400'}`} />
+                            <input value={name} onChange={(e) => handleChangeName(e)} type="text" className={`rounded text-black focus:ring-0 ${errName ? 'focus:border-rose-700 border-rose-700' : 'focus:border-emerald-400 border-emerald-400'}`} />
                             {
                                 name.length > 0 && (
                                     <div className="w-5 mx-2 my-auto">
@@ -55,7 +61,7 @@ const TeamA = () => {
                     ) :
                         (
                             <div className="flex">
-                                <p onClick={handleEditTeam} className="text-black text-lg font-bolder">{name}</p>
+                                <p onClick={handleEditTeam} className="text-primary text-lg font-bold">{name}</p>
                                 {
                                     canEdit && (
                                         <div className="w-4">
@@ -75,8 +81,8 @@ const TeamA = () => {
             <div>
                 <div className="flex flex-col gap-3">
                     {
-                        members.map((name) => (
-                            <input value={name} type="text" placeholder="Enter player's name" className="text-black rounded-full bg-secondary-900 border-transparent w-96 focus:border-primary focus:ring-0" />
+                        members.map((name, index) => (
+                            <input key={index} value={name} onChange={(e) => handleMember(e.target.value, index)} type="text" placeholder="Enter player's name" className="text-black rounded-full bg-secondary-900 border-transparent w-96 focus:border-primary focus:ring-0" />
                         ))
                     }
                 </div>
