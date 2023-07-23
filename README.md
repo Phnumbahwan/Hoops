@@ -1,2 +1,2 @@
 # Hoops
-Its a score point system
+Its a scoring system
