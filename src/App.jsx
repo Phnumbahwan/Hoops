@@ -1,13 +1,17 @@
-import { useState } from 'react'
 import './App.css'
-import { Card } from 'flowbite-react';
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
+import { Route, Routes } from 'react-router-dom';
+import Main from './pages/Main';
+import Setup from './pages/Setup';
 
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <Routes>
+      <Route>
+        <Route path="/" element={<Main />} />
+        <Route path="/setup" element={<Setup />} />
+      </Route>
+    </Routes>
   )
 }
 
