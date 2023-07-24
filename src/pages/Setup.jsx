@@ -1,10 +1,11 @@
 import { useState } from "react";
 import TeamA from "../components/SETUP/teamA";
 import TeamB from "../components/SETUP/teamB";
+import { Link } from "react-router-dom";
 
 const Setup = () => {
     const [teamA, setTeamA] = useState();
-    
+
     return (
         <div className="relative">
             <img
@@ -20,7 +21,9 @@ const Setup = () => {
                     <TeamB />
                 </div>
             </div>
-            <button className="bg-primary font-bold w-[250px] py-2 object-cover absolute bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white hover:border-primary hover:bg-white hover:text-primary focus:outline-none">Proceed</button>
+            <Link to="/game" relative="path">
+                <button className="bg-primary font-bold w-[250px] py-2 object-cover absolute bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white hover:border-primary hover:bg-white hover:text-primary focus:outline-none">Proceed</button>
+            </Link>
         </div>
     );
 }
