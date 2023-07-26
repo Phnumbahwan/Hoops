@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "gh-pages -b gh-pages -d build",
-    "clean": "rm -rf node_modules/gh-pages/.cache"
+    "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "flowbite": "^1.7.0",
