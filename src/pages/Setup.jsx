@@ -2,10 +2,8 @@ import { useState } from "react";
 import TeamA from "../components/SETUP/teamA";
 import TeamB from "../components/SETUP/teamB";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 const Setup = () => {
-    const [cookies, setCookie] = useCookies(['teams']);
     const navigate = useNavigate();
     const [nameA, setNameA] = useState('Team A');
     const [nameB, setNameB] = useState('Team B');
@@ -35,12 +33,8 @@ const Setup = () => {
             }
         })
 
-        const temp = {
-            teamA: {name: nameA, members: teamA},
-            teamB: {name: nameB, members: teamB}
-        }
-
-        setCookie('teams', temp);
+        Cookies.set('teamA', JSON.stringify({name: nameA, members: teamA}));
+        Cookies.set('teamB', JSON.stringify({name: nameB, members: teamB}));
         navigate("/game");
     }
 
