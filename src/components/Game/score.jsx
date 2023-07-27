@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Score = ({team}) => {
+const Score = ({team, winner, setOverallScore}) => {
     const [score, setScore] = useState(0);
     const [rebound, setRebound] = useState(0);
     const [assist, setAssist] = useState(0);
@@ -25,17 +25,18 @@ const Score = ({team}) => {
         setAssist(assist);
         setBlock(block);
         setFoul(foul);
+        setOverallScore(score);
     }, [team])
 
     return (
-        <div className="text-center text-white rounded p-3 bg-primary">
+        <div className={`text-center rounded p-3 ${winner === team.name ? 'bg-primary text-white' : winner === '' ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
             <h1 className="font-bold text-[30px]">{team.name}</h1>
             <div className="grid grid-cols-5 gap-4 my-3">
-                <p>{score}</p>
-                <p>{rebound}</p>
-                <p>{assist}</p>
-                <p>{block}</p>
-                <p>{foul}</p>
+                <p className="font-bold text-[30px]">{score}</p>
+                <p className="font-bold mt-auto">{rebound}</p>
+                <p className="font-bold mt-auto">{assist}</p>
+                <p className="font-bold mt-auto">{block}</p>
+                <p className="font-bold mt-auto">{foul}</p>
                 <p className="font-bold">Score</p>
                 <p className="font-bold">Rebound</p>
                 <p className="font-bold">Assist</p>
