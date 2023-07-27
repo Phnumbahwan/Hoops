@@ -1,10 +1,42 @@
 import { useState } from "react";
 import TeamA from "../components/SETUP/teamA";
 import TeamB from "../components/SETUP/teamB";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Setup = () => {
-    const [teamA, setTeamA] = useState();
+    const navigate = useNavigate();
+    const [nameA, setNameA] = useState('Team A');
+    const [nameB, setNameB] = useState('Team B');
+    const [membersA, setMembersA] = useState(['', '', '']);
+    const [membersB, setMembersB] = useState(['', '', '']);
+
+    const handleProceed = () => {
+        const teamA = membersA.map((member) => {
+            return {
+                name: member,
+                score: 0,
+                rebound: 0,
+                assist: 0,
+                block: 0,
+                foul: 0
+            }
+        })
+
+        const teamB = membersB.map((member) => {
+            return {
+                name: member,
+                score: 0,
+                rebound: 0,
+                assist: 0,
+                block: 0,
+                foul: 0
+            }
+        })
+
+        Cookies.set('teamA', JSON.stringify({name: nameA, members: teamA}));
+        Cookies.set('teamB', JSON.stringify({name: nameB, members: teamB}));
+        navigate("/game");
+    }
 
     return (
         <div className="relative">
@@ -15,15 +47,13 @@ const Setup = () => {
             />
             <div className="grid grid-cols-2 w-screen h-screen">
                 <div className="bg-white">
-                    <TeamA />
+                    <TeamA name={nameA} setName={setNameA} members={membersA} setMembers={setMembersA} />
                 </div>
                 <div className="bg-primary">
-                    <TeamB />
+                    <TeamB name={nameB} setName={setNameB} members={membersB} setMembers={setMembersB} />
                 </div>
             </div>
-            <Link to="/game" relative="path">
-                <button className="bg-primary font-bold w-[250px] py-2 object-cover absolute bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white hover:border-primary hover:bg-white hover:text-primary focus:outline-none">Proceed</button>
-            </Link>
+            <button onClick={() => handleProceed()} className="bg-primary font-bold w-[250px] py-2 object-cover absolute bottom-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white hover:border-primary hover:bg-white hover:text-primary focus:outline-none">Proceed</button>
         </div>
     );
 }

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import toast from 'react-hot-toast';
 
-const TeamB = () => {
-    const [name, setName] = useState('Team B');
+const TeamB = ({name, setName, members, setMembers}) => {
     const [errName, setErrName] = useState(false);
     const [canEdit, setCanEdit] = useState(false);
     const [editTeam, setEditTeam] = useState(false);
-    const [members, setMembers] = useState(['', '', '']);
 
     const handleEdit = () => {
         setCanEdit(!canEdit);
@@ -17,7 +15,9 @@ const TeamB = () => {
     }
 
     const handleRemoveMember = () => {
-        setMembers(prevState => prevState.slice(0, -1))
+        if(members.length > 1) {
+            setMembers(prevState => prevState.slice(0, -1))
+        }
     }
 
     const handleEditTeam = () => {
