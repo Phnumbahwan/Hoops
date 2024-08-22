@@ -1,7 +1,7 @@
 import { useState } from "react";
 import toast from 'react-hot-toast';
 
-const TeamA = ({name, setName, members, setMembers}) => {
+const TeamA = ({ name, setName, members, setMembers }) => {
     const [errName, setErrName] = useState(false);
     const [canEdit, setCanEdit] = useState(false);
     const [editTeam, setEditTeam] = useState(false);
@@ -15,7 +15,7 @@ const TeamA = ({name, setName, members, setMembers}) => {
     }
 
     const handleRemoveMember = () => {
-        if(members.length > 1) {
+        if (members.length > 1) {
             setMembers(prevState => prevState.slice(0, -1))
         }
     }
@@ -48,12 +48,9 @@ const TeamA = ({name, setName, members, setMembers}) => {
                             {
                                 name.length > 0 && (
                                     <div className="w-5 mx-2 my-auto">
-                                        <img
-                                            onClick={() => setEditTeam(!editTeam)}
-                                            src='https://ucarecdn.com/820c9e91-dda3-49db-82c6-de996e088e35/tick.png'
-                                            alt="Description of the image"
-                                            className="w-full object-cover cursor-pointer"
-                                        />
+                                        <svg onClick={() => setEditTeam(!editTeam)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 text-green-500">
+                                            <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                                        </svg>
                                     </div>
                                 )
                             }
@@ -65,12 +62,9 @@ const TeamA = ({name, setName, members, setMembers}) => {
                                 {
                                     canEdit && (
                                         <div className="w-4">
-                                            <img
-                                                onClick={handleEditTeam}
-                                                src='https://ucarecdn.com/f4788a1b-9a11-41fd-b14d-806b7f7944db/pencil.png'
-                                                alt="Description of the image"
-                                                className="object-cover mx-2"
-                                            />
+                                            <svg onClick={handleEditTeam} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 text-primary">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                            </svg>
                                         </div>
                                     )
                                 }
@@ -86,19 +80,13 @@ const TeamA = ({name, setName, members, setMembers}) => {
                         ))
                     }
                 </div>
-                <div className="flex justify-center mt-5">
-                    <img
-                        onClick={handleAddMember}
-                        src='https://ucarecdn.com/866d5860-ca44-4792-8a93-93e0e91f7887/plus.png'
-                        alt="Description of the image"
-                        className="w-5 object-cover mx-2 cursor-pointer"
-                    />
-                    <img
-                        onClick={handleRemoveMember}
-                        src='https://ucarecdn.com/6d9bb855-efa8-45ab-bf98-0209ba6c2693/minus.png'
-                        alt="Description of the image"
-                        className="w-4 object-cover mx-2 cursor-pointer"
-                    />
+                <div className="flex justify-center gap-5 mt-5">
+                    <svg onClick={handleAddMember} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 text-primary hover:bg-gray-100 rounded-full">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <svg onClick={handleRemoveMember} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 text-primary hover:bg-gray-100 rounded-full">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                    </svg>
                 </div>
             </div>
         </div>
